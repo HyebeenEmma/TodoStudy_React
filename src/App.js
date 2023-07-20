@@ -15,7 +15,7 @@ function CustomButton(props) {
 }
 
 //Comment
-
+//commit test1 Jeongmin
 //List 초록창 컴포넌트
 function List(props) {
   if (props.list.isActive === true) {
