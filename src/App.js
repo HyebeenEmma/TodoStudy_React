@@ -13,7 +13,7 @@ function CustomButton(props) {
       </button>
     );
 }
-
+//helloo hellooo
 //List 초록창 컴포넌트
 function List(props) {
   if (props.list.isActive === true) {
