@@ -1,38 +1,72 @@
-.App {
-  text-align: center;
+.app-style {
+  padding: 30px;
+  max-width: 1140px;
+  min-width: 740px;
+  border-radius: 5px;
+  background-color: rgba(128, 128, 128, 0.2);
+  margin: 0 auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.app-style > input {
+  width: 200px;
+  height: 30px;
+  color: (0, 0, 0, 0);
+  border-radius: 5px;
+  border-color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h3 {
+  margin: 10px 0px 0px 10px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+* {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.app-button {
+  width: 120px;
+  height: 30px;
   color: white;
+  background-color: rgb(47, 153, 126);
+  border-color: rgb(47, 153, 126);
+  border-radius: 5px;
+  float: right;
 }
 
-.App-link {
-  color: #61dafb;
+.list-style {
+  padding: 0px 0px 10px 10px;
+  display: flex;
+  gap: 12px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.component-style {
+  padding: 20px;
+  width: 230px;
+  height: 110px;
+  border: 2px solid rgba(0, 117, 0, 0.7);
+  border-radius: 10px;
+  text-align: left;
+}
+
+.component-style > h3 {
+  margin: 10px 0px 10px 0px;
+}
+
+.component-style > p {
+  margin: 10px 0px 15px 0px;
+}
+
+.component-style > button {
+  width: 100px;
+  height: 30px;
+  color: #000;
+  background-color: white;
+  border-radius: 5px;
+  margin: 0px 10px 10px 0px;
+}
+
+.app-center {
+  max-width: 1200px;
+  min-width: 800px;
+  margin: 0 auto;
 }
