@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Layout from "./Layout";
+import Modal from "react-modal";
 import "./App.css";
 
 //Button 컴포넌트
@@ -8,51 +9,52 @@ function CustomButton(props) {
 
   if (color)
     return (
-      <button style={{ borderColor: color, color: "black" }} onClick={onClick}>
+      <button
+        style={{ borderColor: color, color: "black", float: "right" }}
+        onClick={onClick}
+      >
         {children}
       </button>
     );
 }
-//Hello
-//Comment
-//third change
+
 //List 초록창 컴포넌트
 function List(props) {
   if (props.list.isActive === true) {
     return (
       <div className="component-style">
-        <h3>{props.list.todo}</h3>
-        <p>{props.list.memo}</p>
+        {props.list.todo}
+        {/* <p>{props.list.memo}</p> */}
         <CustomButton
           color="red"
           onClick={() => props.handleDelete(props.list.id)}
         >
-          Delete
+          D
         </CustomButton>
         <CustomButton
           color="green"
           onClick={() => props.handleActive(props.list.id)}
         >
-          Complete
+          C
         </CustomButton>
       </div>
     );
   } else {
     return (
       <div className="component-style">
-        <h3>{props.list.todo}</h3>
-        <p>{props.list.memo}</p>
+        {props.list.todo}
+        {/* <p>{props.list.memo}</p> */}
         <CustomButton
           color="red"
           onClick={() => props.handleDelete(props.list.id)}
         >
-          Delete
+          D
         </CustomButton>
         <CustomButton
           color="green"
           onClick={() => props.handleActive(props.list.id)}
         >
-          Active
+          A
         </CustomButton>
       </div>
     );
@@ -60,6 +62,7 @@ function List(props) {
 }
 
 const App = () => {
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [lists, setLists] = useState([
     {
       id: 1,
@@ -113,9 +116,15 @@ const App = () => {
     setLists(newTodoList);
   };
 
+  if (modalIsOpen === true) {
+    <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+      This is Modal content
+    </Modal>;
+  }
+
   return (
     <Layout>
-      <div>
+      <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
         <div className="app-style">
           TO-DO &nbsp;{" "}
           <input
@@ -134,12 +143,26 @@ const App = () => {
           <button
             className="app-button"
             onClick={() => {
+              setModalIsOpen(false);
               addTodoList();
               setTodo("");
               setMemo("");
             }}
           >
-            ADD
+            Create
+          </button>
+        </div>
+      </Modal>
+      <div>
+        <div className="app-style">
+          Date
+          <button
+            className="app-button"
+            onClick={() => {
+              setModalIsOpen(true);
+            }}
+          >
+            New TODO
           </button>
         </div>
         <div className="app-center">

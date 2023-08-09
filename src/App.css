@@ -3,7 +3,7 @@
   max-width: 1140px;
   min-width: 740px;
   border-radius: 5px;
-  background-color: rgba(128, 128, 128, 0.2);
+  /* background-color: rgba(128, 128, 128, 0.2); */
   margin: 0 auto;
 }
 
@@ -25,7 +25,7 @@ h3 {
 
 .app-button {
   width: 120px;
-  height: 30px;
+  height: 40px;
   color: white;
   background-color: rgb(47, 153, 126);
   border-color: rgb(47, 153, 126);
@@ -35,16 +35,12 @@ h3 {
 
 .list-style {
   padding: 0px 0px 10px 10px;
-  display: flex;
   gap: 12px;
 }
 
 .component-style {
-  padding: 20px;
-  width: 230px;
-  height: 110px;
-  border: 2px solid rgba(0, 117, 0, 0.7);
-  border-radius: 10px;
+  /* border: 2px solid rgba(0, 117, 0, 0.7); */
+  width: 1140px;
   text-align: left;
 }
 
@@ -57,8 +53,6 @@ h3 {
 }
 
 .component-style > button {
-  width: 100px;
-  height: 30px;
   color: #000;
   background-color: white;
   border-radius: 5px;
