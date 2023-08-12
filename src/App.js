@@ -20,11 +20,16 @@ function CustomButton(props) {
 
 //List 초록창 컴포넌트
 function List(props) {
-  if (props.list.isActive === true) {
-    return (
-      <div className="component-style">
-        {props.list.todo}
-        {/* <p>{props.list.memo}</p> */}
+  const buttonStyle = {
+    display: "flex",
+    justifyContent: "flex-end",
+    alignItems: "center",
+  };
+
+  return (
+    <div className="component-style">
+      <div>{props.list.todo}</div>
+      <div style={buttonStyle}>
         <CustomButton
           color="red"
           onClick={() => props.handleDelete(props.list.id)}
@@ -35,30 +40,11 @@ function List(props) {
           color="green"
           onClick={() => props.handleActive(props.list.id)}
         >
-          C
+          {props.list.isActive ? "C" : "A"}
         </CustomButton>
       </div>
-    );
-  } else {
-    return (
-      <div className="component-style">
-        {props.list.todo}
-        {/* <p>{props.list.memo}</p> */}
-        <CustomButton
-          color="red"
-          onClick={() => props.handleDelete(props.list.id)}
-        >
-          D
-        </CustomButton>
-        <CustomButton
-          color="green"
-          onClick={() => props.handleActive(props.list.id)}
-        >
-          A
-        </CustomButton>
-      </div>
-    );
-  }
+    </div>
+  );
 }
 
 const App = () => {
