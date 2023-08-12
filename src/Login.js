@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link for navigation
+import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -8,26 +8,56 @@ const Login = () => {
   const [id, setID] = useState("");
   const [password, setPassword] = useState("");
 
+  const handleIDChange = (e) => {
+    setID(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Perform login logic here
+  };
+
   return (
     <div className="login-form">
-      <label>ID</label>
-      <input
-        type="text"
-        autoFocus
-        placeholder="아이디를 입력하세요"
-        onChange={(e) => setID(e.target.value)}
-      />
+      <h2>Login Page</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="id">ID</label>
+          <input
+            type="text"
+            id="id"
+            className="form-control form-control-sm"
+            style={{ fontSize: "12px", padding: "5px" }}
+            autoFocus
+            placeholder="ID"
+            value={id}
+            onChange={handleIDChange}
+          />
+        </div>
 
-      <label>Password</label>
-      <input
-        type="password"
-        placeholder="비밀번호를 입력하세요"
-        onChange={(e) => setPassword(e.target.value)}
-      />
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            className="form-control form-control-sm"
+            style={{ fontSize: "12px", padding: "5px" }}
+            placeholder="Password"
+            value={password}
+            onChange={handlePasswordChange}
+          />
+        </div>
 
-      <button type="submit">로그인</button>
+        <button type="submit" className="btn btn-primary">
+          Log In
+        </button>
+      </form>
 
-      <p>
+      <p className="mt-3">
         Don't have an account? <Link to="/signup">Sign up</Link>
       </p>
     </div>
