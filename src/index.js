@@ -3,7 +3,8 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Routes } from "react-router-dom"; // Import necessary components
 import "./index.css";
 import App from "./App";
-import Login from "./Login"; // Import the Login component
+import Login from "./Login";
+import Form from "./signup";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -13,6 +14,7 @@ root.render(
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<App />} />
+        <Route path="/signup" element={<Form />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

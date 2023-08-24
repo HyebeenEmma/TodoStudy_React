@@ -1,107 +1,121 @@
-import { useState } from 'react';
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Layout from "./Layout";
-import Modal from "react-modal";
 import "./App.css";
 
 export default function Form() {
+  // States for registration
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-// States for registration
-const [name, setName] = useState('');
-const [email, setEmail] = useState('');
-const [password, setPassword] = useState('');
+  // States for checking the errors
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
 
-// States for checking the errors
-const [submitted, setSubmitted] = useState(false);
-const [error, setError] = useState(false);
+  // Handling the name change
+  const handleName = (e) => {
+    setName(e.target.value);
+    setSubmitted(false);
+  };
 
-// Handling the name change
-const handleName = (e) => {
-setName(e.target.value);
-setSubmitted(false);
-};
+  // Handling the email change
+  const handleEmail = (e) => {
+    setEmail(e.target.value);
+    setSubmitted(false);
+  };
 
-// Handling the email change
-const handleEmail = (e) => {
-setEmail(e.target.value);
-setSubmitted(false);
-};
+  // Handling the password change
+  const handlePassword = (e) => {
+    setPassword(e.target.value);
+    setSubmitted(false);
+  };
 
-// Handling the password change
-const handlePassword = (e) => {
-setPassword(e.target.value);
-setSubmitted(false);
-};
+  // Handling the form submission
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (name === "" || email === "" || password === "") {
+      setError(true);
+    } else {
+      setSubmitted(true);
+      setError(false);
+    }
+  };
 
-// Handling the form submission
-const handleSubmit = (e) => {
-e.preventDefault();
-if (name === '' || email === '' || password === '') {
-setError(true);
-} else {
-setSubmitted(true);
-setError(false);
-}
-};
+  // Showing success message
+  const successMessage = () => {
+    return (
+      <div
+        className="success"
+        style={{
+          display: submitted ? "" : "none",
+        }}
+      >
+        <h1>Hi, {name}! successfully registered!!</h1>
+      </div>
+    );
+  };
 
-// Showing success message
-const successMessage = () => {
-return (
-<div
-className="success"
-style={{
-display: submitted ? '' : 'none',
-}}>
-<h1>Hi, {name}! successfully registered!!</h1>
-</div>
-);
-};
+  // Showing error message if error is true
+  const errorMessage = () => {
+    return (
+      <div
+        className="error"
+        style={{
+          display: error ? "" : "none",
+        }}
+      >
+        <h1>Please enter all the fields</h1>
+      </div>
+    );
+  };
 
-// Showing error message if error is true
-const errorMessage = () => {
-return (
-<div
-className="error"
-style={{
-display: error ? '' : 'none',
-}}>
-<h1>Please enter all the fields</h1>
-</div>
-);
-};
+  return (
+    <div className="form">
+      <div>
+        <h2>Sign Up</h2>
+      </div>
 
-return (
-<div className="form">
-<div>
-<h2>Sign Up</h2>
-</div>
+      {/* Calling to the methods */}
+      <div className="messages">
+        {errorMessage()}
+        {successMessage()}
+      </div>
 
-{/* Calling to the methods */}
-<div className="messages">
-{errorMessage()}
-{successMessage()}
-</div>
+      <form>
+        {/* Labels and inputs for form data */}
+        <label className="label">Name</label>
+        <input
+          onChange={handleName}
+          className="input"
+          value={name}
+          type="text"
+        />
 
-<form>
-{/* Labels and inputs for form data */}
-<label className="label">Name</label>
-<input onChange={handleName} className="input"
-value={name} type="text" />
+        <label className="label">Email</label>
+        <input
+          onChange={handleEmail}
+          className="input"
+          value={email}
+          type="email"
+        />
 
-<label className="label">Email</label>
-<input onChange={handleEmail} className="input"
-value={email} type="email" />
+        <label className="label">Password</label>
+        <input
+          onChange={handlePassword}
+          className="input"
+          value={password}
+          type="password"
+        />
 
-<label className="label">Password</label>
-<input onChange={handlePassword} className="input"
-value={password} type="password" />
-
-<button onClick={handleSubmit} className="btn btn-primary" type="submit">
-Submit
-</button>
-</form>
-</div>
-);
+        <button
+          onClick={handleSubmit}
+          className="btn btn-primary"
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  );
 }

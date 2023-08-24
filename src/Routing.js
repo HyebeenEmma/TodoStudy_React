@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./App";
 import Home from "./Home";
 import Login from "./Login";
+import Signup from "./Signup";
 
 function Routing() {
   return (
@@ -14,8 +15,11 @@ function Routing() {
           <Route path="/" element={<App />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
         </Routes>
       </BrowserRouter>
     </div>
   );
 }
+
+export default Routing;
