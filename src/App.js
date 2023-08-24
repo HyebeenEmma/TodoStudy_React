@@ -1,7 +1,13 @@
 import { useState } from "react";
 import Layout from "./Layout";
 import Modal from "react-modal";
+import moment from "moment";
+import { CiSquareCheck, CiTrash, CiDumbbell } from "react-icons/ci";
 import "./App.css";
+
+//날짜
+const date = new Date();
+const formattedDate = moment(date).format("MMMM Do YYYY");
 
 //Button 컴포넌트
 function CustomButton(props) {
@@ -10,7 +16,13 @@ function CustomButton(props) {
   if (color)
     return (
       <button
-        style={{ borderColor: color, color: "black", float: "right" }}
+        style={{
+          float: "right",
+          borderRadius: "3px",
+          backgroundColor: "ButtonHighlight",
+          scale: "1.1",
+          marginRight: "5px",
+        }}
         onClick={onClick}
       >
         {children}
@@ -34,13 +46,13 @@ function List(props) {
           color="red"
           onClick={() => props.handleDelete(props.list.id)}
         >
-          D
+          <CiTrash />
         </CustomButton>
         <CustomButton
           color="green"
           onClick={() => props.handleActive(props.list.id)}
         >
-          {props.list.isActive ? "C" : "A"}
+          {props.list.isActive ? <CiSquareCheck /> : <CiDumbbell />}
         </CustomButton>
       </div>
     </div>
@@ -103,92 +115,107 @@ const App = () => {
   };
 
   if (modalIsOpen === true) {
-    <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
+    <Modal
+      isOpen={modalIsOpen}
+      onRequestClose={() => setModalIsOpen(false)}
+      className="modal-open"
+    >
       This is Modal content
     </Modal>;
   }
 
   return (
-    <Layout>
-      <Modal isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}>
-        <div className="app-style">
-          TO-DO &nbsp;{" "}
-          <input
-            value={todo}
-            onChange={(event) => {
-              setTodo(event.target.value);
-            }}
-          />{" "}
-          &nbsp; Memo &nbsp;{" "}
-          <input
-            value={memo}
-            onChange={(event) => {
-              setMemo(event.target.value);
-            }}
-          />
-          <button
-            className="app-button"
-            onClick={() => {
-              setModalIsOpen(false);
-              addTodoList();
-              setTodo("");
-              setMemo("");
-            }}
-          >
-            Create
-          </button>
-        </div>
-      </Modal>
-      <div>
-        <div className="app-style">
-          Date
-          <button
-            className="app-button"
-            onClick={() => {
-              setModalIsOpen(true);
-            }}
-          >
-            New TODO
-          </button>
-        </div>
-        <div className="app-center">
-          <h3>Working..</h3> <br />
-          <div className="list-style">
-            {lists.map((list) => {
-              if (list.isActive === true) {
-                return (
-                  <List
-                    list={list}
-                    key={list.id}
-                    handleDelete={deleteTodoList}
-                    handleActive={changeActive}
-                  />
-                );
-              } else {
-                return null;
-              }
-            })}
+    <div className="whole-web">
+      <Layout>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={() => setModalIsOpen(false)}
+          className="modal-open"
+        >
+          <div className="app-style">
+            <h5>TO-DO</h5>
+            <input
+              value={todo}
+              onChange={(event) => {
+                setTodo(event.target.value);
+              }}
+              style={{ height: "50px", width: "500px" }}
+            />{" "}
+            <h5 style={{ marginTop: "10px" }}>Memo</h5>
+            <input
+              value={memo}
+              onChange={(event) => {
+                setMemo(event.target.value);
+              }}
+              style={{ height: "200px", width: "500px" }}
+            />
+            <div>
+              <button
+                className="app-button"
+                onClick={() => {
+                  setModalIsOpen(false);
+                  addTodoList();
+                  setTodo("");
+                  setMemo("");
+                }}
+              >
+                Create
+              </button>
+            </div>
           </div>
-          <h3>Done..!</h3> <br />
-          <div className="list-style">
-            {lists.map((list) => {
-              if (list.isActive === false) {
-                return (
-                  <List
-                    list={list}
-                    key={list.id}
-                    handleDelete={deleteTodoList}
-                    handleActive={changeActive}
-                  />
-                );
-              } else {
-                return null;
-              }
-            })}
+        </Modal>
+        <div>
+          <div className="app-style">
+            <h4>{formattedDate}</h4>
+            <button
+              className="app-button"
+              onClick={() => {
+                setModalIsOpen(true);
+              }}
+              style={{ float: "right" }}
+            >
+              New TODO
+            </button>
+          </div>
+          <div className="app-center">
+            <h3>Working..</h3> <br />
+            <div className="list-style">
+              {lists.map((list) => {
+                if (list.isActive === true) {
+                  return (
+                    <List
+                      list={list}
+                      key={list.id}
+                      handleDelete={deleteTodoList}
+                      handleActive={changeActive}
+                    />
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </div>
+            <h3>Done..!</h3> <br />
+            <div className="list-style">
+              {lists.map((list) => {
+                if (list.isActive === false) {
+                  return (
+                    <List
+                      list={list}
+                      key={list.id}
+                      handleDelete={deleteTodoList}
+                      handleActive={changeActive}
+                    />
+                  );
+                } else {
+                  return null;
+                }
+              })}
+            </div>
           </div>
         </div>
-      </div>
-    </Layout>
+      </Layout>
+    </div>
   );
 };
 
