@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"; // Import neces
 import "./index.css";
 import App from "./App";
 import Login from "./Login";
-import Form from "./signup";
+import Signup from "./Signup";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -12,9 +12,9 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<Login />} />
         <Route path="/" element={<App />} />
-        <Route path="/signup" element={<Form />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/Signup" element={<Signup />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
