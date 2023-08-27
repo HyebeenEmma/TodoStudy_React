@@ -2,47 +2,67 @@ import { useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
-  // States for registration
   const [name, setName] = useState("");
+  const [id, setID] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
-  // Handling the name change
   const handleName = (e) => {
     setName(e.target.value);
     setSubmitted(false);
   };
 
-  // Handling the email change
+  const handleID = (e) => {
+    setID(e.target.value);
+    setSubmitted(false);
+  };
+
   const handleEmail = (e) => {
     setEmail(e.target.value);
     setSubmitted(false);
   };
 
-  // Handling the password change
   const handlePassword = (e) => {
     setPassword(e.target.value);
     setSubmitted(false);
   };
 
-  // Handling the form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (name === "" || email === "" || password === "") {
+    setError(false);
+
+    if (name === "" || email === "" || id === "" || password === "") {
+      setError(true);
+    } else if (!email.includes("@")) {
       setError(true);
     } else {
-      setSubmitted(true);
-      setError(false);
+      try {
+        const response = await axios.post("http://localhost:8000/signup", {
+          id: id,
+          password: password,
+          name: name,
+          email: email,
+        });
+
+        if (response.data === "notexist") {
+          setSubmitted(true);
+          navigate("/login");
+        } else {
+          setError(true);
+        }
+      } catch (error) {
+        console.error("Error registering user:", error);
+      }
     }
   };
 
-  // Showing success message
   const successMessage = () => {
     return (
       <div
@@ -51,12 +71,11 @@ export default function Signup() {
           display: submitted ? "" : "none",
         }}
       >
-        <h1>Hi, {name}! successfully registered!!</h1>
+        <h1>Hi, {name}! Successfully registered!!</h1>
       </div>
     );
   };
 
-  // Showing error message if error is true
   const errorMessage = () => {
     return (
       <div
@@ -65,7 +84,7 @@ export default function Signup() {
           display: error ? "" : "none",
         }}
       >
-        <h1>Please enter all the fields</h1>
+        <h1>Please enter all the fields or the user already exists</h1>
       </div>
     );
   };
@@ -76,36 +95,45 @@ export default function Signup() {
         <h2>Sign Up</h2>
       </div>
 
-      {/* Calling to the methods */}
       <div className="messages">
         {errorMessage()}
         {successMessage()}
       </div>
 
       <form>
-        {/* Labels and inputs for form data */}
-        <label className="label">Name</label>
+        <label htmlFor="name">Name</label>
         <input
+          type="text"
+          id="name"
+          value={name}
           onChange={handleName}
           className="input"
-          value={name}
-          type="text"
         />
 
-        <label className="label">Email</label>
+        <label htmlFor="email">Email</label>
         <input
+          type="email"
+          id="email"
+          value={email}
           onChange={handleEmail}
           className="input"
-          value={email}
-          type="email"
         />
 
-        <label className="label">Password</label>
+        <label htmlFor="id">ID</label>
         <input
+          type="text"
+          id="id"
+          value={id}
+          onChange={handleID}
+          className="input"
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          value={password}
           onChange={handlePassword}
           className="input"
-          value={password}
-          type="password"
         />
 
         <button

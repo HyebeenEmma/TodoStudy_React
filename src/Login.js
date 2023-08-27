@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import axios from "axios";
 
 const Login = () => {
   const [id, setID] = useState("");
@@ -16,9 +17,23 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Perform login logic here
+
+    try {
+      const response = await axios.post("http://localhost:8000/login", {
+        id,
+        password,
+      });
+
+      if (response.data === "exist") {
+        console.log("Login successful");
+      } else if (response.data === "notexist") {
+        console.log("User does not exist");
+      }
+    } catch (error) {
+      console.error("Error logging in:", error);
+    }
   };
 
   return (
