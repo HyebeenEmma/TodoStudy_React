@@ -1,5 +1,5 @@
 .whole-web {
-  /* background-color: rgb(243, 181, 224); */
+  /* background-color: rgb(243, 216, 255); */
   width: 1200px;
   height: 700px;
   border-radius: 5px;
@@ -8,7 +8,15 @@
 
 .app-style {
   padding: 30px;
-  border-radius: 5px;
+  border-radius: 10px;
+  margin: 0 auto;
+  border: 2px solid rgba(0, 0, 0, 0.7);
+  /* background-color: rgb(255, 255, 255); */
+}
+
+.app-style-noborder {
+  padding: 30px;
+  border-radius: 10px;
   margin: 0 auto;
 }
 
@@ -68,6 +76,7 @@ h3 {
   max-width: 1200px;
   min-width: 800px;
   margin: 0 auto;
+  padding: 30px;
 }
 
 .modal-open {
@@ -81,63 +90,61 @@ h3 {
 }
 
 /* login.js css */
-.login-box{
-  width:400px;
-  height:300px;
-  border:2px solid rgb(47, 71, 112);
+.login-box {
+  width: 400px;
+  height: 300px;
+  border: 2px solid rgb(47, 71, 112);
   border-radius: 10px;
   margin-left: 10px;
   padding: 10px;
-
 }
 
-.login-title{
-  Width:380px;
-  display:flex;
-  justify-content:center;
-  background-color : lightblue;
-  padding : 5px;
-  border-radius:10px;
-  }
+.login-title {
+  width: 380px;
+  display: flex;
+  justify-content: center;
+  background-color: lightblue;
+  padding: 5px;
+  border-radius: 10px;
+}
 
-  /* signup.js css */
-.signup-box{
-  width:400px;
-  height:400px;
-  border:2px solid rgb(47, 71, 112);
+/* signup.js css */
+.signup-box {
+  width: 400px;
+  height: 400px;
+  border: 2px solid rgb(47, 71, 112);
   border-radius: 10px;
   margin-left: 10px;
   padding: 10px;
-
 }
 
-.signup-title{
-  Width:380px;
-  display:flex;
-  justify-content:center;
-  background-color : lightblue;
-  padding : 5px;
-  border-radius:10px;
-  }
+.signup-title {
+  width: 380px;
+  display: flex;
+  justify-content: center;
+  background-color: lightblue;
+  padding: 5px;
+  border-radius: 10px;
+}
 
-  .error{
-    color: red;
-  }
+.error {
+  color: red;
+}
 
-  .success{
-    color: blue;
-  }
+.success {
+  color: blue;
+}
 
-  .signup-forms{
-    Width:350px;
-    padding : 10px;
-    display:flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content:center;
-    }
-  
-    .signup-text{
-    Width:70px;
-    color: blue;
-    }
+.signup-forms {
+  width: 350px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-text {
+  width: 70px;
+  color: blue;
+}
