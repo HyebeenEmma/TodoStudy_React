@@ -79,3 +79,65 @@ h3 {
   border-color: black;
   background-color: rgb(183, 175, 248);
 }
+
+/* login.js css */
+.login-box{
+  width:400px;
+  height:300px;
+  border:2px solid rgb(47, 71, 112);
+  border-radius: 10px;
+  margin-left: 10px;
+  padding: 10px;
+
+}
+
+.login-title{
+  Width:380px;
+  display:flex;
+  justify-content:center;
+  background-color : lightblue;
+  padding : 5px;
+  border-radius:10px;
+  }
+
+  /* signup.js css */
+.signup-box{
+  width:400px;
+  height:400px;
+  border:2px solid rgb(47, 71, 112);
+  border-radius: 10px;
+  margin-left: 10px;
+  padding: 10px;
+
+}
+
+.signup-title{
+  Width:380px;
+  display:flex;
+  justify-content:center;
+  background-color : lightblue;
+  padding : 5px;
+  border-radius:10px;
+  }
+
+  .error{
+    color: red;
+  }
+
+  .success{
+    color: blue;
+  }
+
+  .signup-forms{
+    Width:350px;
+    padding : 10px;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    }
+  
+    .signup-text{
+    Width:70px;
+    color: blue;
+    }
