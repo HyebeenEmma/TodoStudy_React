@@ -71,7 +71,7 @@ export default function Signup() {
           display: submitted ? "" : "none",
         }}
       >
-        <h1>Hi, {name}! Successfully registered!!</h1>
+        <h4>Hi, {name}! Successfully registered!!</h4>
       </div>
     );
   };
@@ -84,15 +84,15 @@ export default function Signup() {
           display: error ? "" : "none",
         }}
       >
-        <h1>Please enter all the fields or the user already exists</h1>
+        <h4>Please enter all the fields or the user already exists</h4>
       </div>
     );
   };
 
   return (
-    <div className="form">
-      <div>
-        <h2>Sign Up</h2>
+    <div className="signup-box">
+      <div className="signup-title">
+        <h3>Sign Up Page</h3>
       </div>
 
       <div className="messages">
@@ -100,50 +100,60 @@ export default function Signup() {
         {successMessage()}
       </div>
 
-      <form>
-        <label htmlFor="name">Name</label>
+      <div className="signup-forms">
+        <p><label htmlFor="name" className="signup-text">Name</label>&nbsp;
         <input
           type="text"
           id="name"
           value={name}
           onChange={handleName}
           className="input"
+          placeholder="Name"
         />
+        </p>
 
-        <label htmlFor="email">Email</label>
+        <p><label htmlFor="email" className="signup-text">Email</label>&nbsp;
         <input
           type="email"
           id="email"
           value={email}
           onChange={handleEmail}
           className="input"
+          placeholder="email@email.com"
         />
+        </p>
 
-        <label htmlFor="id">ID</label>
+        <p><label htmlFor="id" className="signup-text">ID</label>&nbsp;
         <input
           type="text"
           id="id"
           value={id}
           onChange={handleID}
           className="input"
+          placeholder="ID"
         />
-        <label htmlFor="password">Password</label>
+        </p>
+
+        <p><label htmlFor="password" className="signup-text">Password</label>&nbsp;
         <input
           type="password"
           id="password"
           value={password}
           onChange={handlePassword}
           className="input"
+          placeholder="Password"
         />
+        </p>
 
-        <button
+        <p><button
           onClick={handleSubmit}
           className="btn btn-primary"
           type="submit"
         >
           Submit
         </button>
-      </form>
+        </p>
+      </div>
     </div>
   );
 }
