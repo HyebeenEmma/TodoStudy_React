@@ -37,8 +37,8 @@ const Login = () => {
   };
 
   return (
-    <div className="login-form">
-      <h2>Login Page</h2>
+    <div className="login-box">
+      <div className="login-title"><h3>Login Page</h3></div>
       <form onSubmit={handleSubmit}>
         <div className="form-group mb-3">
           <label htmlFor="id">ID</label>
